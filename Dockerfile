@@ -6,12 +6,13 @@ COPY package.json .
 
 RUN npm install
 
-RUN npm i -g serve
-
 COPY . .
-
-RUN npm run build
 
 EXPOSE 3000
 
-CMD [ "serve", "-s", "dist" ]
+# Use different commands based on NODE_ENV
+CMD if [ "$NODE_ENV" = "development" ]; then \
+        npm run dev -- --host 0.0.0.0 --port 3000; \
+    else \
+        npm run build && serve -s dist; \
+    fi
