@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docker:build": "docker build -t jed27pagayonan/lugarlang-web:latest .",
+    "docker:push": "docker push jed27pagayonan/lugarlang-web:latest",
+    "docker:deploy": "pnpm run docker:build && pnpm run docker:push"
   },
   "dependencies": {
     "react": "^18.2.0",
